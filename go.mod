@@ -1,4 +1,4 @@
-module github.com/logdna/logdna-go
+module github.com/gufranmirza/logdna-go
 
 go 1.14
 
