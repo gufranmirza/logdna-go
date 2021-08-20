@@ -8,6 +8,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	"github.com/prometheus/common/log"
 )
 
 type transport struct {
@@ -83,7 +85,8 @@ func (t *transport) flushSend() {
 	go func() {
 		// TODO(mdeltito): in the future a retry should be triggered
 		// with the msgs pulled out of the buffer
-		t.send(msgs)
+		err := t.send(msgs)
+		log.Errorf("Failed to send log with error %v", err)
 		t.wg.Done()
 	}()
 }
